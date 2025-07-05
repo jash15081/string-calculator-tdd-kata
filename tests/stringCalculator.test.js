@@ -31,4 +31,7 @@ describe('String Calculator', () => {
   it('includes number 1000 (boundary case)', () => {
     expect(add('2,1000')).toBe(1002);
   });
+  it('supports custom delimiters of any length with //[***]\\n syntax', () => {
+    expect(add('//[***]\n1***2***3')).toBe(6);
+  });
 });
