@@ -1,0 +1,13 @@
+{
+  "name": "string-calculator-tddd-kata",
+  "version": "1.0.0",
+  "description": "String Calculator built using TDD in JavaScript for Incubyte hiring assessment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
