@@ -1,3 +1,5 @@
+const { escapeRegExp } = require('../utils/escapeRegExp');
+
 function add(numbers) {
   if (numbers === '') return 0;
   //default delimiter is comma and newline
@@ -8,13 +10,21 @@ function add(numbers) {
     const delimiterEndIndex = numbers.indexOf('\n');
     delimiter = numbers.substring(2, delimiterEndIndex);
     numbers = numbers.substring(delimiterEndIndex + 1);
+
+    // If the delimiter is in the form of //[delimiter]\n, we need to handle it
+    const matches = [...delimiter.matchAll(/\[([^\]]+)\]/g)];
+    if (matches.length > 0) {
+      // If there are multi-character delimiters, we need to create a regex
+      const escapedDelimiters = matches.map((match) => escapeRegExp(match[1]));
+      delimiter = new RegExp(escapedDelimiters.join('|'), 'g');
+    } else {
+      // If it's a single character delimiter, escape it
+      delimiter = escapeRegExp(delimiter);
+    }
   }
 
   // Replace custom delimiter with comma and split the string
-  parts = numbers
-    .replace(new RegExp(delimiter, 'g'), ',')
-    .split(',')
-    .map(Number);
+  const parts = numbers.replace(delimiter, ',').split(',').map(Number);
 
   // Check for negative numbers
   const negatives = parts.filter((part) => part < 0);
