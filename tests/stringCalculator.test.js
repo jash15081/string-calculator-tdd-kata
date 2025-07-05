@@ -22,4 +22,7 @@ describe('String Calculator', () => {
   it('throws exception when a negative number is passed', () => {
     expect(() => add('1,-2')).toThrow('negatives not allowed: -2');
   });
+  it('throws exception with all negative numbers listed', () => {
+    expect(() => add('1,-2,3,-5')).toThrow('negatives not allowed: -2, -5');
+  });
 });
