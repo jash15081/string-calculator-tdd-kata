@@ -15,6 +15,8 @@ function add(numbers) {
     const matches = [...delimiter.matchAll(/\[([^\]]+)\]/g)];
     if (matches.length > 0) {
       // If there are multi-character delimiters, we need to create a regex
+      //escape each delimiter and join them with '|'
+      //e.g. for [***][%%] we create a regex like /(\*\*\*|%%)/g
       const escapedDelimiters = matches.map((match) => escapeRegExp(match[1]));
       delimiter = new RegExp(escapedDelimiters.join('|'), 'g');
     } else {
