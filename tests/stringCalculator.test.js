@@ -19,4 +19,7 @@ describe('String Calculator', () => {
   it('supports custom single-character delimiter using //[delimiter]\\n syntax', () => {
     expect(add('//;\n1;2')).toBe(3);
   });
+  it('throws exception when a negative number is passed', () => {
+    expect(() => add('1,-2')).toThrow('negatives not allowed: -2');
+  });
 });
