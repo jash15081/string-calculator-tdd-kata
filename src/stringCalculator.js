@@ -16,6 +16,11 @@ function add(numbers) {
     .split(',')
     .map(Number);
 
+  // Check for negative numbers
+  const negatives = parts.filter((part) => part < 0);
+  if (negatives.length > 0) {
+    throw new Error(`negatives not allowed: ${negatives.join(', ')}`);
+  }
   var sum = parts.reduce((acc, part) => acc + part, 0);
   return sum;
 }
