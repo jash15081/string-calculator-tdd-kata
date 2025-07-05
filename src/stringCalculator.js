@@ -1,6 +1,21 @@
 function add(numbers) {
   if (numbers === '') return 0;
-  const parts = numbers.replace(/\n/g, ',').split(',').map(Number);
+  //default delimiter is comma and newline
+  let delimiter = /,|\n/;
+
+  // Check for custom delimiter
+  if (numbers.startsWith('//')) {
+    const delimiterEndIndex = numbers.indexOf('\n');
+    delimiter = numbers.substring(2, delimiterEndIndex);
+    numbers = numbers.substring(delimiterEndIndex + 1);
+  }
+
+  // Replace custom delimiter with comma and split the string
+  parts = numbers
+    .replace(new RegExp(delimiter, 'g'), ',')
+    .split(',')
+    .map(Number);
+
   var sum = parts.reduce((acc, part) => acc + part, 0);
   return sum;
 }
