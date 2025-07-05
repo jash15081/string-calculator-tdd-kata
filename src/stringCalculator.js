@@ -1,7 +1,6 @@
 function add(numbers) {
   if (numbers === '') return 0;
-
-  return null; // Placeholder for future implementation
+  return parseInt(numbers);
 }
 
 module.exports = {
