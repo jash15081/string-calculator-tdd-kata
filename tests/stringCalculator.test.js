@@ -25,4 +25,10 @@ describe('String Calculator', () => {
   it('throws exception with all negative numbers listed', () => {
     expect(() => add('1,-2,3,-5')).toThrow('negatives not allowed: -2, -5');
   });
+  it('ignores numbers greater than 1000', () => {
+    expect(add('2,1001')).toBe(2);
+  });
+  it('includes number 1000 (boundary case)', () => {
+    expect(add('2,1000')).toBe(1002);
+  });
 });
