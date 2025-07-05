@@ -21,8 +21,11 @@ function add(numbers) {
   if (negatives.length > 0) {
     throw new Error(`negatives not allowed: ${negatives.join(', ')}`);
   }
-  var sum = parts.reduce((acc, part) => acc + part, 0);
-  return sum;
+
+  // Filter out numbers > 1000
+  const filteredNumbers = parts.filter((n) => n <= 1000);
+
+  return filteredNumbers.reduce((sum, num) => sum + num, 0);
 }
 
 module.exports = {
