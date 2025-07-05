@@ -1,6 +1,11 @@
 function add(numbers) {
   if (numbers === '') return 0;
-  return parseInt(numbers);
+  const parts = numbers.split(',');
+  var sum = 0;
+  for (let part of parts) {
+    sum += parseInt(part);
+  }
+  return sum;
 }
 
 module.exports = {
